@@ -90,9 +90,10 @@ async def set_game(event):
 
 @client1.on(events.ChatAction)
 async def user_add(event):
-    # print(event)
-    if event.user_joined or event.user_added:
+    if event.user_joined:
         user = await client1.get_entity(event.action_message.from_id)
+    elif event.user_added:
+        user = await client1.get_entity(event.action_message.action.users[0])
         await client1.send_message(entity=INPUT2,  message=f'''
 
 Hi {user.first_name} Welcome to Cloud City ™ Click the Group Profile for information. 
